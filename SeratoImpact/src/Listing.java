@@ -1,18 +1,18 @@
 public class Listing {
-    private String listingID;
+    private String name;
     private double price;
     private String status;
     private int availableQuantity;
 
     public Listing(String listingID, double price, String status, int availableQuantity) {
-        this.listingID = listingID;
+        this.name = listingID;
         this.price = price;
         this.status = status;
         this.availableQuantity = availableQuantity;
     }
 
-    public String getListingID() {
-        return listingID;
+    public String getName() {
+        return name;
     }
 
     public double getPrice() {
@@ -28,7 +28,7 @@ public class Listing {
     }
 
     public void setListingID(String listingID) {
-        this.listingID = listingID;
+        this.name = listingID;
     }
 
     public void setPrice(double price) {
@@ -43,12 +43,19 @@ public class Listing {
         this.availableQuantity = availableQuantity;
     }
     public void updatePrice(double price) {
-
+        if (price < 0) {
+            return;
+        }
+        this.price = price;
     }
     public boolean isAvailable() {
         return false;
     }
     public void setAvailability(boolean available) {
-
+        if (available) {
+            this.availableQuantity += 1;
+        } else {
+            this.availableQuantity = 0;
+        }
     }
 }

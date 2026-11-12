@@ -3,7 +3,33 @@ public class Binder {
     private String binderID;
     private String name;
     private boolean isPublic;
-    private List<InventoryItem> items;
+    private List<InventoryItem> items = new ArrayList<>();
+
+    public Binder(String binderID, String name) {
+        this.binderID = binderID;
+        this.name = name;
+        this.isPublic = false;
+    }
+
+    public String getBinderID() {
+        return binderID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean getIsPublic() {
+        return isPublic;
+    }
+
+    public void setPublic() {
+        this.isPublic = true;
+    }
+
+    public void setPrivate() {
+        this.isPublic = false;
+    }
 
     public void addCard(String itemId) {
         InventoryItem item = new InventoryItem(itemId);

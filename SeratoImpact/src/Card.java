@@ -15,4 +15,8 @@ public abstract class Card {
     public String getDescription() {
         return description;
     }
+
+    public int getRarity() {
+        return rarity;
+    }
 }
