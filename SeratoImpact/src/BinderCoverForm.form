@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="BinderCoverForm">
+  <grid id="27dc6" binding="coverMainPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
+    <margin top="15" left="15" bottom="15" right="15"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="474"/>
+    </constraints>
+    <properties>
+      <background color="-724500"/>
+      <preferredSize width="900" height="700"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="76e09" binding="binderCoverPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="250" height="350"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-13689815"/>
+        </properties>
+        <border type="line">
+          <font/>
+          <title-color color="-4473925"/>
+          <color color="-4418475"/>
+        </border>
+        <children>
+          <component id="5de5d" class="javax.swing.JLabel" binding="lblCoverImage">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="110" height="110"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-12358317"/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="0"/>
+              <opaque value="true"/>
+              <text value="CARD IMAGE"/>
+            </properties>
+          </component>
+          <component id="92008" class="javax.swing.JLabel" binding="lblCoverTitle">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Arial" size="16" style="1"/>
+              <foreground color="-1653638"/>
+              <horizontalAlignment value="0"/>
+              <text value="CHARACTER CARD"/>
+            </properties>
+          </component>
+          <component id="a1a76" class="javax.swing.JLabel" binding="lblCollectionName">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="20"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Arial" size="10" style="1"/>
+              <foreground color="-4418475"/>
+              <horizontalAlignment value="0"/>
+              <text value="MY CARD COLLECTION"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="e5372" class="javax.swing.JButton" binding="btnOpenBinder">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="38"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-2775479"/>
+          <borderPainted value="false"/>
+          <font name="Arial" size="12" style="1"/>
+          <foreground color="-14147564"/>
+          <text value="OPEN BINDER"/>
+        </properties>
+      </component>
+      <component id="d30d1" class="javax.swing.JButton" binding="btnBackToCollection">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="180" height="32"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-1975084"/>
+          <font name="Arial" size="12" style="0"/>
+          <foreground color="-12832211"/>
+          <hideActionText value="false"/>
+          <text value="← BACK TO COLLECTION"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
