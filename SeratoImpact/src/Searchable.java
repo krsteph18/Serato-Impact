@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.List;
+
 public interface Searchable {
-    List<Listing> searchCards(String keyword);
+    List<InventoryItem> searchCards(String keyword);
 }

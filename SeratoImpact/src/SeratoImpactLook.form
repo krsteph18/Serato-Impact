@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="SeratoImpactLook">
   <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
@@ -11,7 +11,7 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="f30eb" binding="homePanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="12">
+      <grid id="f30eb" binding="homePanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="12">
         <margin top="15" left="15" bottom="15" right="15"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -31,7 +31,7 @@
               <font name="Arial" size="22" style="1"/>
               <foreground color="-14145496"/>
               <horizontalAlignment value="0"/>
-              <text value="MY CARD COLLECTION"/>
+              <text value="SERATO IMPACT - DIGITAL BINDERS"/>
             </properties>
           </component>
           <component id="7ee4a" class="javax.swing.JTextField" binding="txtSearch">
@@ -60,68 +60,16 @@
               <text value="MY BINDERS"/>
             </properties>
           </component>
-          <grid id="9e99d" binding="binderGridPanel" layout-manager="GridLayoutManager" row-count="2" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
+          <grid id="ui_homeToolbar" binding="homeToolbar" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="8" vgap="0"><margin top="0" left="0" bottom="0" right="0"/><constraints><grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties/><border type="none"/><children><component id="ui_btnCreateBinder" class="javax.swing.JButton" binding="btnCreateBinder"><constraints><grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="+ NEW BINDER"/></properties></component><component id="ui_btnNewSeller" class="javax.swing.JButton" binding="btnNewSeller"><constraints><grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="+ SELLER"/></properties></component><component id="ui_btnSwitchSeller" class="javax.swing.JButton" binding="btnSwitchSeller"><constraints><grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="SWITCH SELLER"/></properties></component><component id="ui_btnToggleMode" class="javax.swing.JButton" binding="btnToggleMode"><constraints><grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="BUYER VIEW"/></properties></component></children></grid><grid id="9e99d" binding="binderGridPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-724500"/>
             </properties>
             <border type="none"/>
-            <children>
-              <component id="72585" class="javax.swing.JButton" binding="btnCharacter">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <autoscrolls value="true"/>
-                  <background color="-14464712"/>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="true"/>
-                  <font name="Arial" size="16" style="1"/>
-                  <foreground color="-1"/>
-                  <text value="&lt;html&gt;&lt;center&gt;CHARACTER&lt;br&gt;CARD COLLECTION&lt;br&gt;&lt;br&gt;OPEN BINDER →&lt;/center&gt;&lt;/html&gt;"/>
-                </properties>
-              </component>
-              <component id="c4eb8" class="javax.swing.JButton" binding="btnEquipment">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-7050447"/>
-                  <borderPainted value="false"/>
-                  <font name="Arial" size="16" style="1"/>
-                  <foreground color="-1"/>
-                  <text value="&lt;html&gt;&lt;center&gt;EQUIPMENT&lt;br&gt;CARD COLLECTION&lt;br&gt;&lt;br&gt;OPEN BINDER →&lt;/center&gt;&lt;/html&gt;"/>
-                </properties>
-              </component>
-              <component id="d21e1" class="javax.swing.JButton" binding="btnEvent">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-13282444"/>
-                  <borderPainted value="false"/>
-                  <font name="Arial" size="16" style="1"/>
-                  <foreground color="-1"/>
-                  <text value="&lt;html&gt;&lt;center&gt;EVENT&lt;br&gt;CARD COLLECTION&lt;br&gt;&lt;br&gt;OPEN BINDER →&lt;/center&gt;&lt;/html&gt;"/>
-                </properties>
-              </component>
-              <component id="96793" class="javax.swing.JButton" binding="btnSupport">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-10140838"/>
-                  <borderPainted value="false"/>
-                  <font name="Arial" size="16" style="1"/>
-                  <foreground color="-1"/>
-                  <text value="&lt;html&gt;&lt;center&gt;SUPPORT&lt;br&gt;CARD COLLECTION&lt;br&gt;&lt;br&gt;OPEN BINDER →&lt;/center&gt;&lt;/html&gt;"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
+            <children/></grid>
         </children>
       </grid>
     </children>

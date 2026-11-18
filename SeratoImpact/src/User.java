@@ -1,39 +1,24 @@
-public class User {
+import java.io.Serializable;
+import java.util.UUID;
 
-    private String userID;
-    private String username;
-    private String email;
-    private String password;
-
-    public User(String userID, String username, String email, String password) {
-        this.userID = userID;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+/** Local seller profile (not an authenticated online account). */
+public final class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private final String userId;
+    private String displayName;
+    private String contact;
+    public User(String displayName, String contact) {
+        this.userId = UUID.randomUUID().toString();
+        update(displayName, contact);
     }
-
-    public String getUserID() {
-        return userID;
+    public void update(String displayName, String contact) {
+        if (displayName == null || displayName.trim().isEmpty())
+            throw new IllegalArgumentException("Seller name is required.");
+        this.displayName = displayName.trim();
+        this.contact = contact == null ? "" : contact.trim();
     }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean login() {
-        return true;
-    }
-
-    public boolean logout() {
-        return true;
-    }
-
+    public String getUserId() { return userId; }
+    public String getDisplayName() { return displayName; }
+    public String getContact() { return contact; }
+    @Override public String toString() { return displayName; }
 }

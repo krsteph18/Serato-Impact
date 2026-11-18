@@ -1,61 +1,20 @@
-public class Listing {
-    private String name;
-    private double price;
-    private String status;
-    private int availableQuantity;
+import java.io.Serializable;
+import java.math.BigDecimal;
 
-    public Listing(String listingID, double price, String status, int availableQuantity) {
-        this.name = listingID;
+/** An optional sale offering for a specific physical inventory item. */
+public final class Listing implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private BigDecimal price;
+    private boolean forSale;
+    public Listing(BigDecimal price, boolean forSale) { update(price, forSale); }
+    public void update(BigDecimal price, boolean forSale) {
+        if (price == null || price.signum() < 0)
+            throw new IllegalArgumentException("Price cannot be negative.");
+        if (forSale && price.signum() == 0)
+            throw new IllegalArgumentException("For-sale cards must have a price greater than zero.");
         this.price = price;
-        this.status = status;
-        this.availableQuantity = availableQuantity;
+        this.forSale = forSale;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public int getAvailableQuantity() {
-        return availableQuantity;
-    }
-
-    public void setListingID(String listingID) {
-        this.name = listingID;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setAvailableQuantity(int availableQuantity) {
-        this.availableQuantity = availableQuantity;
-    }
-    public void updatePrice(double price) {
-        if (price < 0) {
-            return;
-        }
-        this.price = price;
-    }
-    public boolean isAvailable() {
-        return false;
-    }
-    public void setAvailability(boolean available) {
-        if (available) {
-            this.availableQuantity += 1;
-        } else {
-            this.availableQuantity = 0;
-        }
-    }
+    public BigDecimal getPrice() { return price; }
+    public boolean isForSale() { return forSale; }
 }
