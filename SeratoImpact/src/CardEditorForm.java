@@ -11,7 +11,7 @@ public final class CardEditorForm {
     private JButton btnBrowseImage;
 
     public CardEditorForm(InventoryItem existing) {
-        if (mainPanel == null) buildFallbackUI();
+        requireForm();
         btnBrowseImage.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
             chooser.setDialogTitle("Choose card image (JPEG or PNG)");
@@ -32,22 +32,8 @@ public final class CardEditorForm {
             txtQuantity.setText("1");txtPrice.setText("0");chkForSale.setSelected(false);
         }
     }
-    private void buildFallbackUI() {
-        mainPanel = new JPanel(new GridLayout(10,2,9,9));
-        txtName = new JTextField(24);txtCategory = new JTextField(24);
-        txtSet = new JTextField(24);txtRarity = new JTextField(24);
-        txtQuantity = new JTextField(24);txtPrice = new JTextField(24);txtImagePath = new JTextField(24);
-        cmbCondition = new JComboBox<>(new String[]{"Mint", "Near Mint", "Lightly Played", "Moderately Played", "Heavily Played", "Damaged"});
-        chkForSale = new JCheckBox("List for sale");btnBrowseImage = new JButton("BROWSE IMAGE...");
-        addRow("Card name *",txtName);addRow("Category / group",txtCategory);
-        addRow("Set / collection",txtSet);addRow("Rarity",txtRarity);
-        addRow("Condition",cmbCondition);addRow("Quantity (0 or more)",txtQuantity);
-        addRow("Price (PHP)",txtPrice);addRow("Availability",chkForSale);
-        addRow("Card image file path",txtImagePath);addRow("Select image",btnBrowseImage);
-    }
-    private void addRow(String title, JComponent component) {
-        mainPanel.add(new JLabel(title));mainPanel.add(component);
-    }
+
+
     public static CardEditorForm show(Component parent, InventoryItem existing) {
         CardEditorForm form = new CardEditorForm(existing);
         for (;;) {
@@ -90,4 +76,10 @@ public final class CardEditorForm {
     private String getName() { return txtName.getText().trim(); }
     private int getQuantity() { return Integer.parseInt(txtQuantity.getText().trim()); }
     private BigDecimal getPrice() { return new BigDecimal(txtPrice.getText().trim()); }
+
+    private void requireForm() {
+        if (mainPanel == null || txtName == null || txtCategory == null || txtSet == null || txtRarity == null || txtQuantity == null || txtPrice == null || txtImagePath == null || cmbCondition == null || chkForSale == null || btnBrowseImage == null) {
+            throw new IllegalStateException("CardEditorForm.form was not initialized. Build with IntelliJ Swing UI Designer (binary class files).");
+        }
+    }
 }

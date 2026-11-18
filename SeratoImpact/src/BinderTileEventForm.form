@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="BinderTileEventForm">
+  <grid id="binder_tile_root" binding="tilePanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="4" vgap="4">
+    <margin top="14" left="14" bottom="14" right="14"/>
+    <constraints>
+      <xy x="20" y="20" width="415" height="198"/>
+    </constraints>
+    <properties>
+      <background color="-13282444"/>
+      <preferredSize width="415" height="198"/>
+      <opaque value="true"/>
+    </properties>
+    <border type="none">
+      </border>
+    <children>
+      <component id="tile_lblBinderName" class="javax.swing.JLabel" binding="lblBinderName">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Arial" size="16" style="1"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <text value="BINDER NAME"/>
+        </properties>
+      </component>
+      <component id="tile_lblCardCount" class="javax.swing.JLabel" binding="lblCardCount">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="27"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Arial" size="12" style="0"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <text value="0 cards"/>
+        </properties>
+      </component>
+      <component id="tile_lblSellerName" class="javax.swing.JLabel" binding="lblSellerName">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="27"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Arial" size="12" style="0"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <text value="Sample Seller"/>
+        </properties>
+      </component>
+      <component id="tile_lblOpen" class="javax.swing.JLabel" binding="lblOpen">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="-1" height="27"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font name="Arial" size="12" style="1"/>
+          <foreground color="-1"/>
+          <horizontalAlignment value="0"/>
+          <text value="OPEN BINDER  &gt;"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

@@ -8,21 +8,14 @@ public final class BinderEditorForm {
     private JTextField txtDescription;
     private JCheckBox chkPublic;
     public BinderEditorForm(Binder existing) {
-        if (mainPanel == null) buildFallbackUI();
+        requireForm();
         if (existing != null) {
             txtName.setText(existing.getName());
             txtDescription.setText(existing.getDescription());
             chkPublic.setSelected(existing.isPublic());
         } else chkPublic.setSelected(true);
     }
-    private void buildFallbackUI() {
-        mainPanel = new JPanel(new GridLayout(3, 2, 10, 10));
-        txtName = new JTextField(24); txtDescription = new JTextField(24);
-        chkPublic = new JCheckBox("Public: buyers can view", true);
-        mainPanel.add(new JLabel("Binder name"));mainPanel.add(txtName);
-        mainPanel.add(new JLabel("Description"));mainPanel.add(txtDescription);
-        mainPanel.add(new JLabel("Visibility"));mainPanel.add(chkPublic);
-    }
+
     public static BinderEditorForm show(Component owner, Binder existing) {
         BinderEditorForm form = new BinderEditorForm(existing);
         for (;;) {
@@ -36,4 +29,10 @@ public final class BinderEditorForm {
     public String getName() { return txtName.getText().trim(); }
     public String getDescription() { return txtDescription.getText().trim(); }
     public boolean isPublic() { return chkPublic.isSelected(); }
+
+    private void requireForm() {
+        if (mainPanel == null || txtName == null || txtDescription == null || chkPublic == null) {
+            throw new IllegalStateException("BinderEditorForm.form was not initialized. Build with IntelliJ Swing UI Designer (binary class files).");
+        }
+    }
 }

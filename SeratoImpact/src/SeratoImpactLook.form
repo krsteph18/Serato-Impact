@@ -1,75 +1,163 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="SeratoImpactLook">
-  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="home_root" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="500" height="400"/>
+      <xy x="20" y="20" width="1000" height="800"/>
     </constraints>
     <properties>
       <background color="-724500"/>
-      <preferredSize width="900" height="700"/>
-    </properties>
+      <preferredSize width="1000" height="800"/>
+    <opaque value="true"/></properties>
     <border type="none"/>
     <children>
-      <grid id="f30eb" binding="homePanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="12">
+      <grid id="home_layout" layout-manager="GridLayoutManager" binding="homePanel" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="12">
         <margin top="15" left="15" bottom="15" right="15"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-724500"/>
           <opaque value="true"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="1f3f5" class="javax.swing.JLabel" binding="lblMainTitle">
+          <component id="home_title" class="javax.swing.JLabel" binding="lblMainTitle">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="-1" height="40"/>
               </grid>
             </constraints>
             <properties>
+              <text value="SERATO IMPACT - DIGITAL BINDERS"/>
               <font name="Arial" size="22" style="1"/>
               <foreground color="-14145496"/>
               <horizontalAlignment value="0"/>
-              <text value="SERATO IMPACT - DIGITAL BINDERS"/>
             </properties>
           </component>
-          <component id="7ee4a" class="javax.swing.JTextField" binding="txtSearch">
+          <component id="home_search_label" class="javax.swing.JLabel">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="42"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="24"/>
+              </grid>
+            </constraints>
+            <properties>
+              <text value="Search binders or cards"/>
+              <font name="Arial" size="13" style="1"/>
+              <foreground color="-10204356"/>
+            </properties>
+          </component>
+          <component id="home_search" class="javax.swing.JTextField" binding="txtSearch">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="43"/>
               </grid>
             </constraints>
             <properties>
               <background color="-1"/>
-              <caretColor color="-14145496"/>
               <foreground color="-14145496"/>
-              <toolTipText value="Search cards, sets, or names..."/>
+              <caretColor color="-14145496"/>
+              <font name="Arial" size="14" style="0"/>
+              <toolTipText value="Search binders or cards by name, category, rarity, or set"/>
             </properties>
           </component>
-          <component id="7bf9b" class="javax.swing.JLabel" binding="lblMyBinders">
+          <component id="home_binder_count" class="javax.swing.JLabel" binding="lblMyBinders">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="-1" height="25"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="-1" height="32"/>
               </grid>
             </constraints>
             <properties>
+              <text value="MY BINDERS"/>
               <font name="Arial" size="14" style="0"/>
               <foreground color="-10204356"/>
-              <horizontalAlignment value="2"/>
-              <text value="MY BINDERS"/>
             </properties>
           </component>
-          <grid id="ui_homeToolbar" binding="homeToolbar" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="8" vgap="0"><margin top="0" left="0" bottom="0" right="0"/><constraints><grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties/><border type="none"/><children><component id="ui_btnCreateBinder" class="javax.swing.JButton" binding="btnCreateBinder"><constraints><grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="+ NEW BINDER"/></properties></component><component id="ui_btnNewSeller" class="javax.swing.JButton" binding="btnNewSeller"><constraints><grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="+ SELLER"/></properties></component><component id="ui_btnSwitchSeller" class="javax.swing.JButton" binding="btnSwitchSeller"><constraints><grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="SWITCH SELLER"/></properties></component><component id="ui_btnToggleMode" class="javax.swing.JButton" binding="btnToggleMode"><constraints><grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/></constraints><properties><text value="BUYER VIEW"/></properties></component></children></grid><grid id="9e99d" binding="binderGridPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
+          <grid id="home_toolbar" layout-manager="GridLayoutManager" binding="homeToolbar" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="0">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <background color="-724500"/>
+              <opaque value="true"/>
             </properties>
             <border type="none"/>
-            <children/></grid>
+            <children>
+              <component id="home_btnCreateBinder" class="javax.swing.JButton" binding="btnCreateBinder">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="35"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="+ NEW BINDER"/>
+                  <font name="Arial" size="12" style="1"/>
+                  <foreground color="-12832211"/>
+                <background color="-1975084"/></properties>
+              </component>
+              <component id="home_btnNewSeller" class="javax.swing.JButton" binding="btnNewSeller">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="35"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="+ SELLER"/>
+                  <font name="Arial" size="12" style="1"/>
+                  <foreground color="-12832211"/>
+                <background color="-1975084"/></properties>
+              </component>
+              <component id="home_btnSwitchSeller" class="javax.swing.JButton" binding="btnSwitchSeller">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="35"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="SWITCH SELLER"/>
+                  <font name="Arial" size="12" style="1"/>
+                  <foreground color="-12832211"/>
+                <background color="-1975084"/></properties>
+              </component>
+              <component id="home_btnToggleMode" class="javax.swing.JButton" binding="btnToggleMode">
+                <constraints>
+                  <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                    <preferred-size width="120" height="35"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <text value="BUYER VIEW"/>
+                  <font name="Arial" size="12" style="1"/>
+                  <foreground color="-12832211"/>
+                <background color="-1975084"/></properties>
+              </component>
+            </children>
+          </grid>
+          <scrollpane id="binders_scroll" binding="bindersScrollPane">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-724500"/>
+              <horizontalScrollBarPolicy value="30"/>
+              <verticalScrollBarPolicy value="20"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <grid id="binder_grid" layout-manager="GridBagLayout" binding="binderGridPanel" hgap="12" vgap="12">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  </constraints>
+                <properties>
+                  <background color="-724500"/>
+                  <opaque value="true"/>
+                </properties>
+                <border type="none"/>
+                <children/>
+              </grid>
+            </children>
+          </scrollpane>
         </children>
       </grid>
     </children>

@@ -24,15 +24,9 @@ public final class BinderPagesForm {
     public BinderPagesForm(Runnable onBackToCover,Runnable onBackToBinders,Runnable onAdd,Consumer<InventoryItem> onOpenCard) {
         this.onBackToCover=onBackToCover;
         this.onOpenCard=onOpenCard;
-        if (pagesMainPanel==null) buildFallbackUI();
+        requireForm();
         cardButtons=new JButton[]{btnCard1,btnCard2,btnCard3,btnCard4,btnCard5,btnCard6,btnCard7,btnCard8,btnCard9};
         for (JButton b : cardButtons) {
-            b.setHorizontalTextPosition(SwingConstants.CENTER);
-            b.setVerticalTextPosition(SwingConstants.BOTTOM);
-            b.setIconTextGap(5);
-            b.setBackground(Color.WHITE);
-            b.setForeground(new Color(37,62,52));
-            b.setFocusPainted(false);
             b.addActionListener(e->{
                 if (binder==null) return;
                 int i=currentPage*9;
@@ -46,28 +40,7 @@ public final class BinderPagesForm {
         btnBackToBinders.addActionListener(e->onBackToBinders.run());
         btnAddCard.addActionListener(e->onAdd.run());
     }
-    private void buildFallbackUI() {
-        pagesMainPanel=new JPanel(new BorderLayout(12,12));
-        lblBinderName=new JLabel("BINDER",SwingConstants.CENTER);
-        lblBinderName.setFont(new Font("SansSerif",Font.BOLD,20));
-        pagesMainPanel.add(lblBinderName,BorderLayout.NORTH);
-        cardsPanel=new JPanel(new GridLayout(3,3,8,8));
-        btnCard1=new JButton();btnCard2=new JButton();btnCard3=new JButton();
-        btnCard4=new JButton();btnCard5=new JButton();btnCard6=new JButton();
-        btnCard7=new JButton();btnCard8=new JButton();btnCard9=new JButton();
-        for (JButton b:new JButton[]{btnCard1,btnCard2,btnCard3,btnCard4,btnCard5,btnCard6,btnCard7,btnCard8,btnCard9})cardsPanel.add(b);
-        pagesMainPanel.add(cardsPanel,BorderLayout.CENTER);
-        JPanel bottom=new JPanel(new GridLayout(2,1));
-        navigationPanel=new JPanel(new FlowLayout(FlowLayout.CENTER,12,5));
-        btnBack=new JButton("BACK");btnNextPage=new JButton("NEXT PAGE");lblPageNumber=new JLabel("Page 1 of 1");
-        navigationPanel.add(btnBack);navigationPanel.add(lblPageNumber);navigationPanel.add(btnNextPage);
-        pagesToolbar=new JPanel(new FlowLayout(FlowLayout.CENTER,12,5));
-        btnAddCard=new JButton("+ ADD CARD");btnBackToBinders=new JButton("BACK TO BINDERS");
-        pagesToolbar.add(btnAddCard);pagesToolbar.add(btnBackToBinders);
-        bottom.add(navigationPanel);bottom.add(pagesToolbar);
-        pagesMainPanel.add(bottom,BorderLayout.SOUTH);
-        pagesMainPanel.setBorder(BorderFactory.createEmptyBorder(15,15,15,15));
-    }
+
     public void setBinder(Binder binder,boolean sellerMode){
         this.binder=binder;this.sellerMode=sellerMode;currentPage=0;
         btnAddCard.setVisible(sellerMode);
@@ -101,4 +74,10 @@ public final class BinderPagesForm {
         pagesMainPanel.revalidate();pagesMainPanel.repaint();
     }
     public JPanel getMainPanel(){return pagesMainPanel;}
+
+    private void requireForm() {
+        if (pagesMainPanel == null || lblBinderName == null || cardsPanel == null || btnCard1 == null || btnCard2 == null || btnCard3 == null || btnCard4 == null || btnCard5 == null || btnCard6 == null || btnCard7 == null || btnCard8 == null || btnCard9 == null || navigationPanel == null || btnBack == null || btnNextPage == null || lblPageNumber == null || pagesToolbar == null || btnAddCard == null || btnBackToBinders == null) {
+            throw new IllegalStateException("BinderPagesForm.form was not initialized. Build with IntelliJ Swing UI Designer (binary class files).");
+        }
+    }
 }

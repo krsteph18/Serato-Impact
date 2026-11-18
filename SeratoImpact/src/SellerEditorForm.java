@@ -7,18 +7,13 @@ public final class SellerEditorForm {
     private JTextField txtName;
     private JTextField txtContact;
     public SellerEditorForm(User existing) {
-        if (mainPanel == null) buildFallbackUI();
+        requireForm();
         if (existing != null) {
             txtName.setText(existing.getDisplayName());
             txtContact.setText(existing.getContact());
         }
     }
-    private void buildFallbackUI() {
-        mainPanel = new JPanel(new GridLayout(2, 2, 10, 10));
-        txtName = new JTextField(24);txtContact = new JTextField(24);
-        mainPanel.add(new JLabel("Seller display name")); mainPanel.add(txtName);
-        mainPanel.add(new JLabel("Contact / message details")); mainPanel.add(txtContact);
-    }
+
     public static SellerEditorForm show(Component parent, User existing) {
         SellerEditorForm form = new SellerEditorForm(existing);
         for (;;) {
@@ -31,4 +26,10 @@ public final class SellerEditorForm {
     }
     public String getName() { return txtName.getText().trim(); }
     public String getContact() { return txtContact.getText().trim(); }
+
+    private void requireForm() {
+        if (mainPanel == null || txtName == null || txtContact == null) {
+            throw new IllegalStateException("SellerEditorForm.form was not initialized. Build with IntelliJ Swing UI Designer (binary class files).");
+        }
+    }
 }
