@@ -3,8 +3,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-
-/** Application data model and public inventory search; no reservation or checkout. */
 public final class Marketplace implements Searchable, Serializable {
     private static final long serialVersionUID = 1L;
     private final List<User> sellers = new ArrayList<>();
@@ -41,7 +39,8 @@ public final class Marketplace implements Searchable, Serializable {
         for (Binder b : binders) if (b.isPublic()) result.add(b);
         return result;
     }
-    @Override public List<InventoryItem> searchCards(String keyword) {
+    @Override
+    public List<InventoryItem> searchCards(String keyword) {
         String search = keyword == null ? "" : keyword.toLowerCase(Locale.ROOT).trim();
         List<InventoryItem> result = new ArrayList<>();
         for (Binder binder : publicBinders()) for (InventoryItem item : binder.getVisibleItems(false)) {

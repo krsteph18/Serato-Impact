@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-/** An optional sale offering for a specific physical inventory item. */
 public final class Listing implements Serializable {
     private static final long serialVersionUID = 1L;
     private BigDecimal price;

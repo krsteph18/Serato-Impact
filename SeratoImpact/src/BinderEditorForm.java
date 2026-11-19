@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-/** IntelliJ GUI Designer form for editing a binder. */
 public final class BinderEditorForm {
     private JPanel mainPanel;
     private JTextField txtName;

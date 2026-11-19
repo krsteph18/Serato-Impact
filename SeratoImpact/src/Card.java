@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.UUID;
 
-/** Descriptive information for a collectible card; no game mechanics. */
 public final class Card implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String cardId;

@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-/** One user-created collection with sequential nine-pocket pages. */
 public final class Binder implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String binderId;

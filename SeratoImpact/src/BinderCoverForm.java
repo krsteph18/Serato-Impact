@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-/** Existing IntelliJ BinderCoverForm.form, with seller management controls. */
 public final class BinderCoverForm {
     private JPanel coverMainPanel;
     private JPanel binderCoverPanel;

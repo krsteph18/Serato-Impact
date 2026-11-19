@@ -24,7 +24,7 @@ public final class CardImage {
             return new ImageIcon(scaled);
         } catch (IOException ex) { return null; }
     }
-    /** Copy images into app data so removing the original file does not break the binder. */
+
     public static String importImage(String path) throws IOException {
         if (path == null || path.trim().isEmpty()) return "";
         Path source = Path.of(path.trim()).toAbsolutePath().normalize();

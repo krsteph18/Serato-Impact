@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-/** IntelliJ GUI Designer form for a local seller profile. */
 public final class SellerEditorForm {
     private JPanel mainPanel;
     private JTextField txtName;

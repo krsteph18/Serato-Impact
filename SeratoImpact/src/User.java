@@ -1,7 +1,6 @@
 import java.io.Serializable;
 import java.util.UUID;
 
-/** Local seller profile (not an authenticated online account). */
 public final class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String userId;

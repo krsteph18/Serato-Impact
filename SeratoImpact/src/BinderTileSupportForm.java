@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-/** Support cover template; presentation lives in BinderTileSupportForm.form. */
 public final class BinderTileSupportForm {
     private JPanel tilePanel;
     private JLabel lblBinderName;

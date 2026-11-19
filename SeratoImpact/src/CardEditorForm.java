@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
 
-/** Card details / sales listing editor, backed by IntelliJ CardEditorForm.form. */
 public final class CardEditorForm {
     private JPanel mainPanel;
     private JTextField txtName, txtCategory, txtSet, txtRarity, txtQuantity, txtPrice, txtImagePath;

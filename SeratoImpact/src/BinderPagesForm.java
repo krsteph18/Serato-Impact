@@ -3,7 +3,6 @@ import java.awt.*;
 import java.util.List;
 import java.util.function.Consumer;
 
-/** Existing nine-pocket IntelliJ BinderPagesForm.form, no fake cards. */
 public final class BinderPagesForm {
     private JPanel pagesMainPanel;
     private JLabel lblBinderName;

@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
-/** Local desktop data, stored between runs; not a shared online marketplace database. */
 public final class MarketplaceRepository {
     private final Path file;
     public MarketplaceRepository() {

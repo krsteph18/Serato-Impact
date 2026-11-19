@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/** Logic for clickable binder templates; colors, fonts and layout are owned by the .form files. */
 public final class BinderTileBehavior {
     private BinderTileBehavior() { }
 

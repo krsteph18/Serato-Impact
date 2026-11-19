@@ -2,7 +2,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-/** One physical card type/copy group in one binder. */
 public final class InventoryItem implements Serializable {
     private static final long serialVersionUID = 1L;
     private final String itemId;

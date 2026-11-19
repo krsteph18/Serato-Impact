@@ -3,7 +3,6 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
-/** Entry point and GUI navigation for the Serato Impact local desktop prototype. */
 public final class Main {
     private final MarketplaceRepository repository=new MarketplaceRepository();
     private Marketplace marketplace;

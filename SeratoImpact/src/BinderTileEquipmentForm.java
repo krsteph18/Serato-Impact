@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-/** Equipment cover template; presentation lives in BinderTileEquipmentForm.form. */
 public final class BinderTileEquipmentForm {
     private JPanel tilePanel;
     private JLabel lblBinderName;

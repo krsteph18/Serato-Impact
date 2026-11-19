@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-/** Event cover template; presentation lives in BinderTileEventForm.form. */
 public final class BinderTileEventForm {
     private JPanel tilePanel;
     private JLabel lblBinderName;

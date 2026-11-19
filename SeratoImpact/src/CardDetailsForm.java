@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-/** Read-only card information; all visual layout and styles are in CardDetailsForm.form. */
 public final class CardDetailsForm {
     private JPanel mainPanel;
     private JPanel infoPanel;

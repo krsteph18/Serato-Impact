@@ -6,7 +6,6 @@ import java.awt.Insets;
 import java.util.List;
 import java.util.function.Consumer;
 
-/** Controller for SeratoImpactLook.form: layout and styling live in the form. */
 public final class SeratoImpactLook {
     private JPanel mainPanel;
     private JPanel homePanel;

@@ -1,6 +1,5 @@
 import javax.swing.*;
 
-/** Original character-green cover template; presentation lives in BinderTileForm.form. */
 public final class BinderTileForm {
     private JPanel tilePanel;
     private JLabel lblBinderName;
