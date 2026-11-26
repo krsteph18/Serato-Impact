@@ -279,8 +279,8 @@ public final class SeratoImpactLook {
         ImageIcon original = new ImageIcon(imageURL);
 
         Image scaled = original.getImage().getScaledInstance(
-                700,
-                65,
+                250,
+                100,
                 Image.SCALE_SMOOTH
         );
 
