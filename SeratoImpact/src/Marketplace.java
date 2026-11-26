@@ -7,6 +7,8 @@ public final class Marketplace implements Searchable, Serializable {
     private static final long serialVersionUID = 1L;
     private final List<User> sellers = new ArrayList<>();
     private final List<Binder> binders = new ArrayList<>();
+
+    private List<Order> orders = new ArrayList<>();
     public Marketplace() {
         User starter = addSeller("Sample Seller", "Add your contact in Seller Profile");
         addBinder(starter, "Character Cards", "Character card collection", true);
@@ -21,6 +23,11 @@ public final class Marketplace implements Searchable, Serializable {
         if (seller == null || !sellers.contains(seller)) throw new IllegalArgumentException("Unknown seller.");
         Binder binder = new Binder(seller.getUserId(), name, description, isPublic);
         binders.add(binder); return binder;
+    }
+
+    public Order addOrder(Order order) {
+        orders.add(order);
+        return order;
     }
     public void removeBinder(Binder binder) { binders.remove(binder); }
     public List<User> getSellers() { return Collections.unmodifiableList(sellers); }

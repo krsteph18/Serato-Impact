@@ -71,9 +71,23 @@ public final class CheckoutService {
                 List<OrderItem> snapshot = new ArrayList<>();
 
                 for (ResolvedLine line : seller.getValue()) {
-                    snapshot.add(new OrderItem(line.binder.getBinderId(), line.item.getItemId(), line.item.getCard().getName(), line.item.getCondition(), line.quantity, line.item.getListing().getPrice()));
-                    newOrders.add(new Order(seller.getKey(), buyerName.trim(), buyerContact.trim(), snapshot));
+                    snapshot.add(new OrderItem(
+                            line.binder.getBinderId(),
+                            line.item.getItemId(),
+                            line.item.getCard().getName(),
+                            line.item.getCondition(),
+                            line.quantity,
+                            line.item.getListing().getPrice()
+                    ));
                 }
+
+                newOrders.add(new Order(  //changed
+                        seller.getKey(),
+                        null,
+                        buyerName.trim(),
+                        buyerContact.trim(),
+                        snapshot
+                ));
             }
 
             for (List<ResolvedLine> lines : bySeller.values()) {

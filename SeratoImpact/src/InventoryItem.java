@@ -29,4 +29,20 @@ public final class InventoryItem implements Serializable {
     public int getQuantity() { return quantity; }
     public Listing getListing() { return listing; }
     public boolean isAvailableForSale() { return listing != null && listing.isForSale() && quantity > 0; }
+
+    public void sell(int quantity) { //added
+        if (quantity <= 0 || quantity > this.quantity) {
+            throw new IllegalArgumentException("Invalid quantity.");
+        }
+
+        this.quantity -= quantity;
+    }
+
+    public void restock(int quantity) {
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Invalid quantity.");
+        }
+
+        this.quantity += quantity;
+    }
 }
