@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.event.DocumentEvent;
@@ -8,6 +9,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public final class SeratoImpactLook {
+
     private JPanel mainPanel;
     private JPanel homePanel;
     private JLabel lblMainTitle;
@@ -16,31 +18,71 @@ public final class SeratoImpactLook {
     private JPanel binderGridPanel;
     private JScrollPane bindersScrollPane;
     private JPanel homeToolbar;
-    private JButton btnCreateBinder, btnNewSeller, btnSwitchSeller, btnToggleMode;
+
+    private JButton btnCreateBinder, btnNewSeller,
+            btnSwitchSeller, btnToggleMode;
 
     private final Marketplace marketplace;
     private final Consumer<Binder> onOpen;
+
     private User seller;
     private boolean sellerMode = true;
 
-    public SeratoImpactLook(Marketplace marketplace, Consumer<Binder> onOpen,
-                            Runnable newBinder, Runnable newSeller, Runnable switchSeller, Runnable toggleMode) {
+
+    public SeratoImpactLook(
+            Marketplace marketplace,
+            Consumer<Binder> onOpen,
+            Runnable newBinder,
+            Runnable newSeller,
+            Runnable switchSeller,
+            Runnable toggleMode
+    ) {
+
         this.marketplace = marketplace;
         this.onOpen = onOpen;
-        if (mainPanel == null || binderGridPanel == null || txtSearch == null || bindersScrollPane == null) {
-            throw new IllegalStateException("SeratoImpactLook.form was not initialized. In IntelliJ, enable Swing UI Designer and generate GUI into binary class files.");
+
+        if (mainPanel == null ||
+                binderGridPanel == null ||
+                txtSearch == null ||
+                bindersScrollPane == null) {
+
+            throw new IllegalStateException(
+                    "SeratoImpactLook.form was not initialized. " +
+                            "In IntelliJ, enable Swing UI Designer and " +
+                            "generate GUI into binary class files."
+            );
         }
+
+        // Display the logo image instead of the title text
+        setTitleImage();
+
+        // Button actions
         btnCreateBinder.addActionListener(e -> newBinder.run());
         btnNewSeller.addActionListener(e -> newSeller.run());
         btnSwitchSeller.addActionListener(e -> switchSeller.run());
         btnToggleMode.addActionListener(e -> toggleMode.run());
+
+        // Search listener
         txtSearch.getDocument().addDocumentListener(new DocumentListener() {
-            @Override public void insertUpdate(DocumentEvent e) { refresh(); }
-            @Override public void removeUpdate(DocumentEvent e) { refresh(); }
-            @Override public void changedUpdate(DocumentEvent e) { refresh(); }
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                refresh();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                refresh();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                refresh();
+            }
+
         });
 
-// Configure the binder scrolling area
+        // Configure the binder scrolling area
         bindersScrollPane.setVerticalScrollBarPolicy(
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
         );
@@ -51,7 +93,7 @@ public final class SeratoImpactLook {
 
         bindersScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
-// Limit the visible height of the binder section
+        // Limit the visible height of the binder section
         Dimension scrollSize = bindersScrollPane.getPreferredSize();
 
         bindersScrollPane.setPreferredSize(
@@ -59,70 +101,148 @@ public final class SeratoImpactLook {
         );
     }
 
+
     public void show(User seller, boolean sellerMode) {
+
         this.seller = seller;
         this.sellerMode = sellerMode;
+
         refresh();
     }
 
+
     public void refresh() {
+
         if (seller == null) return;
+
         binderGridPanel.removeAll();
+
         String q = txtSearch.getText().trim().toLowerCase();
-        List<Binder> binders = sellerMode ? marketplace.bindersFor(seller) : marketplace.publicBinders();
+
+        List<Binder> binders = sellerMode
+                ? marketplace.bindersFor(seller)
+                : marketplace.publicBinders();
+
         int shown = 0;
+
         for (Binder binder : binders) {
-            boolean match = Marketplace.contains(binder.getName(), q) || Marketplace.contains(binder.getDescription(), q);
-            if (!match) for (InventoryItem item : binder.getVisibleItems(sellerMode)) {
-                Card card = item.getCard();
-                if (Marketplace.contains(card.getName(), q) || Marketplace.contains(card.getCategory(), q)
-                        || Marketplace.contains(card.getSetName(), q) || Marketplace.contains(card.getRarity(), q)) {
-                    match = true;
-                    break;
+
+            boolean match =
+                    Marketplace.contains(binder.getName(), q) ||
+                            Marketplace.contains(binder.getDescription(), q);
+
+            if (!match) {
+
+                for (InventoryItem item : binder.getVisibleItems(sellerMode)) {
+
+                    Card card = item.getCard();
+
+                    if (Marketplace.contains(card.getName(), q) ||
+                            Marketplace.contains(card.getCategory(), q) ||
+                            Marketplace.contains(card.getSetName(), q) ||
+                            Marketplace.contains(card.getRarity(), q)) {
+
+                        match = true;
+                        break;
+                    }
                 }
             }
+
             if (!match) continue;
+
             User owner = marketplace.getOwner(binder);
             int count = binder.getVisibleItems(sellerMode).size();
-            // The original four colors are stored in four editable .form cover templates.
-            // User-created binders cycle through those same original templates.
+
+            // Select one of the four binder templates
             int template = marketplace.getBinders().indexOf(binder) % 4;
+
             String name = binder.getName().toLowerCase(java.util.Locale.ROOT);
-            if (name.equals("character cards")) template = 0;
-            else if (name.equals("equipment cards")) template = 1;
-            else if (name.equals("event cards")) template = 2;
-            else if (name.equals("support cards")) template = 3;
-            Runnable open = () -> onOpen.accept(binder);
-            JPanel tilePanel;
-            switch (template) {
-                case 1 -> tilePanel = new BinderTileEquipmentForm(binder, owner, count, sellerMode, open).getPanel();
-                case 2 -> tilePanel = new BinderTileEventForm(binder, owner, count, sellerMode, open).getPanel();
-                case 3 -> tilePanel = new BinderTileSupportForm(binder, owner, count, sellerMode, open).getPanel();
-                default -> tilePanel = new BinderTileForm(binder, owner, count, sellerMode, open).getPanel();
+
+            if (name.equals("character cards")) {
+                template = 0;
+            } else if (name.equals("equipment cards")) {
+                template = 1;
+            } else if (name.equals("event cards")) {
+                template = 2;
+            } else if (name.equals("support cards")) {
+                template = 3;
             }
-            // Only dynamic tile placement is done in Java; styling stays in .form files.
+
+            Runnable open = () -> onOpen.accept(binder);
+
+            JPanel tilePanel;
+
+            switch (template) {
+
+                case 1:
+                    tilePanel = new BinderTileEquipmentForm(
+                            binder, owner, count, sellerMode, open
+                    ).getPanel();
+                    break;
+
+                case 2:
+                    tilePanel = new BinderTileEventForm(
+                            binder, owner, count, sellerMode, open
+                    ).getPanel();
+                    break;
+
+                case 3:
+                    tilePanel = new BinderTileSupportForm(
+                            binder, owner, count, sellerMode, open
+                    ).getPanel();
+                    break;
+
+                default:
+                    tilePanel = new BinderTileForm(
+                            binder, owner, count, sellerMode, open
+                    ).getPanel();
+                    break;
+            }
+
+            // Position binder tiles in a two-column grid
             GridBagConstraints gbc = new GridBagConstraints();
+
             gbc.gridx = shown % 2;
             gbc.gridy = shown / 2;
             gbc.weightx = 0.5;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.anchor = GridBagConstraints.NORTH;
             gbc.insets = new Insets(6, 6, 6, 6);
+
             binderGridPanel.add(tilePanel, gbc);
+
             shown++;
         }
+
+        // Update binder heading
         if (shown == 0) {
-            // Dynamic empty state text; no GUI layout manipulation.
-            lblMyBinders.setText(sellerMode ? "MY BINDERS — No matching binders. Use + NEW BINDER." : "PUBLIC BINDERS — No matching results.");
+
+            lblMyBinders.setText(
+                    sellerMode
+                            ? "MY BINDERS — No matching binders. Use + NEW BINDER."
+                            : "PUBLIC BINDERS — No matching results."
+            );
+
         } else {
-            lblMyBinders.setText((sellerMode ? "MY BINDERS - " + seller.getDisplayName() : "PUBLIC BINDERS - BUYER VIEW") + " (" + shown + ")");
+
+            lblMyBinders.setText(
+                    (sellerMode
+                            ? "MY BINDERS - " + seller.getDisplayName()
+                            : "PUBLIC BINDERS - BUYER VIEW")
+                            + " (" + shown + ")"
+            );
         }
-        btnToggleMode.setText(sellerMode ? "BUYER VIEW" : "SELLER VIEW");
+
+        // Update buttons according to the current mode
+        btnToggleMode.setText(
+                sellerMode ? "BUYER VIEW" : "SELLER VIEW"
+        );
+
         btnCreateBinder.setVisible(sellerMode);
         btnNewSeller.setVisible(sellerMode);
         btnSwitchSeller.setVisible(sellerMode);
 
-// Update the scroll pane
+        // Update the scroll pane
         binderGridPanel.revalidate();
         binderGridPanel.repaint();
 
@@ -130,17 +250,50 @@ public final class SeratoImpactLook {
         bindersScrollPane.repaint();
 
         SwingUtilities.invokeLater(() -> {
-            System.out.println("Viewport height: " +
-                    bindersScrollPane.getViewport().getExtentSize().height);
 
-            System.out.println("Binder preferred height: " +
-                    binderGridPanel.getPreferredSize().height);
+            System.out.println(
+                    "Viewport height: " +
+                            bindersScrollPane.getViewport().getExtentSize().height
+            );
+
+            System.out.println(
+                    "Binder preferred height: " +
+                            binderGridPanel.getPreferredSize().height
+            );
+
         });
     }
 
 
+    // Load and display the Serato Impact logo
+    private void setTitleImage() {
 
-    public JPanel getMainPanel() { return mainPanel; }
+        java.net.URL imageURL =
+                getClass().getResource("/images/serato-title.png");
 
+        if (imageURL == null) {
+            System.out.println("Title image not found!");
+            return;
+        }
+
+        ImageIcon original = new ImageIcon(imageURL);
+
+        Image scaled = original.getImage().getScaledInstance(
+                700,
+                65,
+                Image.SCALE_SMOOTH
+        );
+
+        lblMainTitle.setText("");
+        lblMainTitle.setIcon(new ImageIcon(scaled));
+
+        lblMainTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        lblMainTitle.setVerticalAlignment(SwingConstants.CENTER);
+    }
+
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
 
 }
