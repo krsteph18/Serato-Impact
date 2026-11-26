@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="CardEditorForm">
   <grid id="editor_root" binding="mainPanel" layout-manager="GridLayoutManager" row-count="10" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="9" vgap="9">
     <margin top="12" left="12" bottom="12" right="12"/>
@@ -16,7 +16,7 @@
           <text value="Card name *"/>
         </properties>
       </component>
-      <component id="field_txtName" binding="txtName" class="javax.swing.JTextField">
+      <component id="field_txtName" class="javax.swing.JTextField" binding="txtName">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -30,12 +30,6 @@
           <text value="Category / group"/>
         </properties>
       </component>
-      <component id="field_txtCategory" binding="txtCategory" class="javax.swing.JTextField">
-        <constraints>
-          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties/>
-      </component>
       <component id="label_txtSet" class="javax.swing.JLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -44,7 +38,7 @@
           <text value="Set / collection"/>
         </properties>
       </component>
-      <component id="field_txtSet" binding="txtSet" class="javax.swing.JTextField">
+      <component id="field_txtSet" class="javax.swing.JTextField" binding="txtSet">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -58,7 +52,7 @@
           <text value="Rarity"/>
         </properties>
       </component>
-      <component id="field_txtRarity" binding="txtRarity" class="javax.swing.JTextField">
+      <component id="field_txtRarity" class="javax.swing.JTextField" binding="txtRarity">
         <constraints>
           <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -72,7 +66,7 @@
           <text value="Condition"/>
         </properties>
       </component>
-      <component id="field_cmbCondition" binding="cmbCondition" class="javax.swing.JComboBox">
+      <component id="field_cmbCondition" class="javax.swing.JComboBox" binding="cmbCondition">
         <constraints>
           <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -95,7 +89,7 @@
           <text value="Quantity (0 or more)"/>
         </properties>
       </component>
-      <component id="field_txtQuantity" binding="txtQuantity" class="javax.swing.JTextField">
+      <component id="field_txtQuantity" class="javax.swing.JTextField" binding="txtQuantity">
         <constraints>
           <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -109,11 +103,13 @@
           <text value="Price (PHP)"/>
         </properties>
       </component>
-      <component id="field_txtPrice" binding="txtPrice" class="javax.swing.JTextField">
+      <component id="field_txtPrice" class="javax.swing.JTextField" binding="txtPrice">
         <constraints>
           <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="label_chkForSale" class="javax.swing.JLabel">
         <constraints>
@@ -123,7 +119,7 @@
           <text value="Availability"/>
         </properties>
       </component>
-      <component id="field_chkForSale" binding="chkForSale" class="javax.swing.JCheckBox">
+      <component id="field_chkForSale" class="javax.swing.JCheckBox" binding="chkForSale">
         <constraints>
           <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -139,7 +135,7 @@
           <text value="Card image file path"/>
         </properties>
       </component>
-      <component id="field_txtImagePath" binding="txtImagePath" class="javax.swing.JTextField">
+      <component id="field_txtImagePath" class="javax.swing.JTextField" binding="txtImagePath">
         <constraints>
           <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -153,12 +149,25 @@
           <text value="Select image"/>
         </properties>
       </component>
-      <component id="field_btnBrowseImage" binding="btnBrowseImage" class="javax.swing.JButton">
+      <component id="field_btnBrowseImage" class="javax.swing.JButton" binding="btnBrowseImage">
         <constraints>
           <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="BROWSE IMAGE..."/>
+        </properties>
+      </component>
+      <component id="c13d9" class="javax.swing.JComboBox" binding="Category">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Character"/>
+            <item value="Support"/>
+            <item value="Equipment"/>
+            <item value="Event"/>
+          </model>
         </properties>
       </component>
     </children>
