@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.GridBagConstraints;
@@ -38,6 +39,24 @@ public final class SeratoImpactLook {
             @Override public void removeUpdate(DocumentEvent e) { refresh(); }
             @Override public void changedUpdate(DocumentEvent e) { refresh(); }
         });
+
+// Configure the binder scrolling area
+        bindersScrollPane.setVerticalScrollBarPolicy(
+                JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED
+        );
+
+        bindersScrollPane.setHorizontalScrollBarPolicy(
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
+
+        bindersScrollPane.getVerticalScrollBar().setUnitIncrement(20);
+
+// Limit the visible height of the binder section
+        Dimension scrollSize = bindersScrollPane.getPreferredSize();
+
+        bindersScrollPane.setPreferredSize(
+                new Dimension(scrollSize.width, 450)
+        );
     }
 
     public void show(User seller, boolean sellerMode) {
@@ -102,9 +121,26 @@ public final class SeratoImpactLook {
         btnCreateBinder.setVisible(sellerMode);
         btnNewSeller.setVisible(sellerMode);
         btnSwitchSeller.setVisible(sellerMode);
+
+// Update the scroll pane
         binderGridPanel.revalidate();
         binderGridPanel.repaint();
+
+        bindersScrollPane.revalidate();
+        bindersScrollPane.repaint();
+
+        SwingUtilities.invokeLater(() -> {
+            System.out.println("Viewport height: " +
+                    bindersScrollPane.getViewport().getExtentSize().height);
+
+            System.out.println("Binder preferred height: " +
+                    binderGridPanel.getPreferredSize().height);
+        });
     }
 
+
+
     public JPanel getMainPanel() { return mainPanel; }
+
+
 }

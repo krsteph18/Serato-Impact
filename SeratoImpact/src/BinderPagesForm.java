@@ -47,30 +47,115 @@ public final class BinderPagesForm {
     }
     public void refresh(){displayPage();}
     private int getTotalPages(){return binder==null?1:binder.getTotalPages(sellerMode);}
-    private void displayPage(){
-        if(binder==null)return;
-        List<InventoryItem> cards=binder.getVisibleItems(sellerMode);
-        lblBinderName.setText(binder.getName()+" - "+(sellerMode?"MY COLLECTION":"FOR SALE"));
-        if (currentPage>=getTotalPages())currentPage=getTotalPages()-1;
-        for(int i=0;i<9;i++){
-            JButton b=cardButtons[i];int index=currentPage*9+i;
-            b.setIcon(null);
-            if(index<cards.size()){
-                InventoryItem item=cards.get(index);Card card=item.getCard();
-                ImageIcon image=CardImage.load(card.getImagePath(),135,148);
-                b.setIcon(image);
-                String price=item.isAvailableForSale()?"PHP "+item.getListing().getPrice().toPlainString():"NOT FOR SALE";
-                b.setText("<html><center>"+CardImage.html(card.getName())+"<br>"+price+"<br>Qty: "+item.getQuantity()+"</center></html>");
-                b.setToolTipText(card.getCategory()+" - "+card.getSetName());
-                b.setEnabled(true);
-            }else{
-                b.setText("EMPTY POCKET");b.setToolTipText(null);b.setEnabled(false);
-            }
+    private void displayPage() {
+        if (binder == null) return;
+
+        List<InventoryItem> cards = binder.getVisibleItems(sellerMode);
+
+        lblBinderName.setText(
+                binder.getName() + " - " +
+                        (sellerMode ? "MY COLLECTION" : "FOR SALE")
+        );
+
+        if (currentPage >= getTotalPages()) {
+            currentPage = getTotalPages() - 1;
         }
-        lblPageNumber.setText("Page "+(currentPage+1)+" of "+getTotalPages());
-        btnNextPage.setEnabled(currentPage<getTotalPages()-1);
-        btnBack.setText(currentPage==0?"BACK TO COVER":"PREVIOUS PAGE");
-        pagesMainPanel.revalidate();pagesMainPanel.repaint();
+
+        cardsPanel.removeAll();
+        cardsPanel.setLayout(new GridLayout(3, 3, 12, 12));
+
+        for (int i = 0; i < 9; i++) {
+            int index = currentPage * 9 + i;
+
+            JPanel cardContainer = new JPanel(new BorderLayout(8, 0));
+            cardContainer.setBackground(Color.WHITE);
+            cardContainer.setBorder(
+                    BorderFactory.createEmptyBorder(5, 5, 5, 5)
+            );
+
+            if (index < cards.size()) {
+
+                InventoryItem item = cards.get(index);
+                Card card = item.getCard();
+
+                // Card image on the left
+                ImageIcon image = CardImage.loadCover(
+                        card.getImagePath(), 140, 240
+                );
+
+                JButton imageButton = new JButton();
+                imageButton.setIcon(image);
+                imageButton.setPreferredSize(new Dimension(140, 240));
+                imageButton.setBorder(null);
+                imageButton.setContentAreaFilled(false);
+                imageButton.setFocusPainted(false);
+                imageButton.setMargin(new Insets(0, 0, 0, 0));
+
+                imageButton.addActionListener(e ->
+                        onOpenCard.accept(item)
+                );
+
+                cardContainer.add(imageButton, BorderLayout.WEST);
+
+                // Card details on the right
+                JPanel details = new JPanel();
+                details.setLayout(new BoxLayout(details, BoxLayout.Y_AXIS));
+                details.setBackground(Color.WHITE);
+
+                JLabel name = new JLabel(card.getName());
+                name.setFont(new Font("Arial", Font.BOLD, 14));
+
+                JLabel category = new JLabel(card.getCategory());
+                JLabel set = new JLabel("Set: " + card.getSetName());
+                JLabel rarity = new JLabel("Rarity: " + card.getRarity());
+
+                String price = item.isAvailableForSale()
+                        ? "PHP " + item.getListing().getPrice().toPlainString()
+                        : "NOT FOR SALE";
+
+                JLabel priceLabel = new JLabel(price);
+                JLabel quantity = new JLabel("Qty: " + item.getQuantity());
+
+                details.add(name);
+                details.add(Box.createVerticalStrut(8));
+                details.add(category);
+                details.add(Box.createVerticalStrut(5));
+                details.add(set);
+                details.add(Box.createVerticalStrut(5));
+                details.add(rarity);
+                details.add(Box.createVerticalStrut(12));
+                details.add(priceLabel);
+                details.add(quantity);
+
+                cardContainer.add(details, BorderLayout.CENTER);
+
+                cardContainer.setToolTipText(card.getName());
+
+            } else {
+                cardContainer.add(
+                        new JLabel("EMPTY POCKET", SwingConstants.CENTER),
+                        BorderLayout.CENTER
+                );
+            }
+
+            cardsPanel.add(cardContainer);
+        }
+
+        lblPageNumber.setText(
+                "Page " + (currentPage + 1) + " of " + getTotalPages()
+        );
+
+        btnNextPage.setEnabled(currentPage < getTotalPages() - 1);
+
+        btnBack.setText(
+                currentPage == 0 ? "BACK TO COVER" : "PREVIOUS PAGE"
+        );
+
+        cardsPanel.revalidate();
+        cardsPanel.repaint();
+
+        pagesMainPanel.revalidate();
+        pagesMainPanel.repaint();
     }
     public JPanel getMainPanel(){return pagesMainPanel;}
 

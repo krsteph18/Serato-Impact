@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 /** Images are optional; thumbnails are read from local files. */
 public final class CardImage {
@@ -23,6 +25,50 @@ public final class CardImage {
             Image scaled = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             return new ImageIcon(scaled);
         } catch (IOException ex) { return null; }
+    }
+
+    public static ImageIcon loadCover(String path, int targetW, int targetH) {
+        if (path == null || path.trim().isEmpty()) return null;
+
+        try {
+            BufferedImage img = ImageIO.read(new File(path));
+
+            if (img == null) return null;
+
+            // Scale enough to completely cover the container
+            double scale = Math.max(
+                    (double) targetW / img.getWidth(),
+                    (double) targetH / img.getHeight()
+            );
+
+            int scaledW = (int) Math.ceil(img.getWidth() * scale);
+            int scaledH = (int) Math.ceil(img.getHeight() * scale);
+
+            // Create an image with the exact container dimensions
+            BufferedImage result = new BufferedImage(
+                    targetW, targetH, BufferedImage.TYPE_INT_ARGB
+            );
+
+            Graphics2D g = result.createGraphics();
+
+            g.setRenderingHint(
+                    RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BICUBIC
+            );
+
+            // Center and crop excess image portions
+            int x = (targetW - scaledW) / 2;
+            int y = (targetH - scaledH) / 2;
+
+            g.drawImage(img, x, y, scaledW, scaledH, null);
+
+            g.dispose();
+
+            return new ImageIcon(result);
+
+        } catch (IOException ex) {
+            return null;
+        }
     }
 
     public static String importImage(String path) throws IOException {

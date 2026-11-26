@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="SeratoImpactLook">
   <grid id="home_root" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
     <margin top="0" left="0" bottom="0" right="0"/>
@@ -7,11 +7,12 @@
     </constraints>
     <properties>
       <background color="-724500"/>
+      <opaque value="true"/>
       <preferredSize width="1000" height="800"/>
-    <opaque value="true"/></properties>
+    </properties>
     <border type="none"/>
     <children>
-      <grid id="home_layout" layout-manager="GridLayoutManager" binding="homePanel" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="12">
+      <grid id="home_layout" binding="homePanel" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="12">
         <margin top="15" left="15" bottom="15" right="15"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -29,10 +30,10 @@
               </grid>
             </constraints>
             <properties>
-              <text value="SERATO IMPACT - DIGITAL BINDERS"/>
               <font name="Arial" size="22" style="1"/>
               <foreground color="-14145496"/>
               <horizontalAlignment value="0"/>
+              <text value="SERATO IMPACT - DIGITAL BINDERS"/>
             </properties>
           </component>
           <component id="home_search_label" class="javax.swing.JLabel">
@@ -42,9 +43,9 @@
               </grid>
             </constraints>
             <properties>
-              <text value="Search binders or cards"/>
               <font name="Arial" size="13" style="1"/>
               <foreground color="-10204356"/>
+              <text value="Search binders or cards"/>
             </properties>
           </component>
           <component id="home_search" class="javax.swing.JTextField" binding="txtSearch">
@@ -55,9 +56,9 @@
             </constraints>
             <properties>
               <background color="-1"/>
-              <foreground color="-14145496"/>
               <caretColor color="-14145496"/>
               <font name="Arial" size="14" style="0"/>
+              <foreground color="-14145496"/>
               <toolTipText value="Search binders or cards by name, category, rarity, or set"/>
             </properties>
           </component>
@@ -68,12 +69,12 @@
               </grid>
             </constraints>
             <properties>
-              <text value="MY BINDERS"/>
               <font name="Arial" size="14" style="0"/>
               <foreground color="-10204356"/>
+              <text value="MY BINDERS"/>
             </properties>
           </component>
-          <grid id="home_toolbar" layout-manager="GridLayoutManager" binding="homeToolbar" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="0">
+          <grid id="home_toolbar" binding="homeToolbar" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="0">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -91,10 +92,11 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="+ NEW BINDER"/>
+                  <background color="-1975084"/>
                   <font name="Arial" size="12" style="1"/>
                   <foreground color="-12832211"/>
-                <background color="-1975084"/></properties>
+                  <text value="+ NEW BINDER"/>
+                </properties>
               </component>
               <component id="home_btnNewSeller" class="javax.swing.JButton" binding="btnNewSeller">
                 <constraints>
@@ -103,10 +105,11 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="+ SELLER"/>
+                  <background color="-1975084"/>
                   <font name="Arial" size="12" style="1"/>
                   <foreground color="-12832211"/>
-                <background color="-1975084"/></properties>
+                  <text value="+ SELLER"/>
+                </properties>
               </component>
               <component id="home_btnSwitchSeller" class="javax.swing.JButton" binding="btnSwitchSeller">
                 <constraints>
@@ -115,10 +118,11 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="SWITCH SELLER"/>
+                  <background color="-1975084"/>
                   <font name="Arial" size="12" style="1"/>
                   <foreground color="-12832211"/>
-                <background color="-1975084"/></properties>
+                  <text value="SWITCH SELLER"/>
+                </properties>
               </component>
               <component id="home_btnToggleMode" class="javax.swing.JButton" binding="btnToggleMode">
                 <constraints>
@@ -127,10 +131,11 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <text value="BUYER VIEW"/>
+                  <background color="-1975084"/>
                   <font name="Arial" size="12" style="1"/>
                   <foreground color="-12832211"/>
-                <background color="-1975084"/></properties>
+                  <text value="BUYER VIEW"/>
+                </properties>
               </component>
             </children>
           </grid>
@@ -140,15 +145,13 @@
             </constraints>
             <properties>
               <background color="-724500"/>
-              <horizontalScrollBarPolicy value="30"/>
+              <horizontalScrollBarPolicy value="31"/>
               <verticalScrollBarPolicy value="20"/>
             </properties>
             <border type="none"/>
             <children>
-              <grid id="binder_grid" layout-manager="GridBagLayout" binding="binderGridPanel" hgap="12" vgap="12">
-                <margin top="0" left="0" bottom="0" right="0"/>
-                <constraints>
-                  </constraints>
+              <grid id="binder_grid" binding="binderGridPanel" layout-manager="GridBagLayout">
+                <constraints/>
                 <properties>
                   <background color="-724500"/>
                   <opaque value="true"/>
