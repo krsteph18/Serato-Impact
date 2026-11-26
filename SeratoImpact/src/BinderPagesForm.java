@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public final class BinderPagesForm {
-
+    private static final int POCKET_WIDTH = 110;
+    private static final int CARD_DISPLAY_HEIGHT = 189;
+    private static final int FOOTER_HEIGHT = 24;
+    private static final int POCKET_HEIGHT =
+            CARD_DISPLAY_HEIGHT + FOOTER_HEIGHT;
     private JPanel pagesMainPanel;
     private JLabel lblBinderName;
 
@@ -82,7 +86,11 @@ public final class BinderPagesForm {
     }
 
     private int getTotalPages() {
-        return binder == null ? 1 : binder.getTotalPages(sellerMode);
+        if (binder == null) return 1;
+
+        int count = binder.getVisibleItems(sellerMode).size();
+
+        return Math.max(1, (count + 14) / 15);
     }
 
     private void displayPage() {
@@ -103,41 +111,76 @@ public final class BinderPagesForm {
 
         cardsPanel.removeAll();
 
-        cardsPanel.setLayout(
-                new GridLayout(3, 3, 12, 12)
-        );
+        cardsPanel.setLayout(new GridBagLayout());
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 15; i++) {
 
-            int index = currentPage * 9 + i;
+            int index = currentPage * 15 + i;
 
-            // Main pocket container
-            JPanel cardContainer = new JPanel(new BorderLayout(0, 3));
+            JPanel cardContainer = new JPanel(new BorderLayout(0, 0));
+
+            cardContainer.setPreferredSize(
+                    new Dimension(POCKET_WIDTH, POCKET_HEIGHT)
+            );
+
+            cardContainer.setMinimumSize(
+                    new Dimension(POCKET_WIDTH, POCKET_HEIGHT)
+            );
+
+            cardContainer.setMaximumSize(
+                    new Dimension(POCKET_WIDTH, POCKET_HEIGHT)
+            );
 
             cardContainer.setBackground(Color.WHITE);
 
-            cardContainer.setBorder(
-                    BorderFactory.createCompoundBorder(
-                            BorderFactory.createLineBorder(
-                                    new Color(210, 210, 210), 1
-                            ),
-                            BorderFactory.createEmptyBorder(4, 4, 3, 4)
-                    )
+            cardContainer.setBorder(null);
+
+
+            JPanel imagePanel = new JPanel(new GridBagLayout());
+
+            Dimension imageAreaSize = new Dimension(
+                    POCKET_WIDTH, CARD_DISPLAY_HEIGHT
             );
 
+            imagePanel.setPreferredSize(imageAreaSize);
+            imagePanel.setMinimumSize(imageAreaSize);
+            imagePanel.setMaximumSize(imageAreaSize);
+            imagePanel.setBackground(Color.WHITE);
+
+            // Fixed-size footer for name and price
+            JPanel details = new JPanel(new GridLayout(2, 1, 0, 0));
+
+            details.setPreferredSize(
+                    new Dimension(POCKET_WIDTH, FOOTER_HEIGHT)
+            );
+
+            details.setMinimumSize(
+                    new Dimension(POCKET_WIDTH, FOOTER_HEIGHT)
+            );
+
+            details.setMaximumSize(
+                    new Dimension(POCKET_WIDTH, FOOTER_HEIGHT)
+            );
+
+            details.setBackground(Color.WHITE);
+
             if (index < cards.size()) {
+
+                // BORDER ONLY FOR OCCUPIED POCKETS
+                cardContainer.setBorder(
+                        BorderFactory.createLineBorder(
+                                new Color(210, 210, 210), 1
+                        )
+                );
 
                 InventoryItem item = cards.get(index);
                 Card card = item.getCard();
 
-                // IMAGE AREA
-                JPanel imagePanel = new JPanel(new GridBagLayout());
-
-                imagePanel.setBackground(Color.WHITE);
-
-                // Load centered card image
+                // Load card at the correct aspect ratio
                 ImageIcon image = CardImage.load(
-                        card.getImagePath(), 125, 155
+                        card.getImagePath(),
+                        POCKET_WIDTH,
+                        CARD_DISPLAY_HEIGHT
                 );
 
                 JButton imageButton = new JButton();
@@ -148,34 +191,21 @@ public final class BinderPagesForm {
                     imageButton.setText("NO IMAGE");
                 }
 
-                imageButton.setPreferredSize(new Dimension(125, 155));
+                imageButton.setPreferredSize(
+                        new Dimension(POCKET_WIDTH, CARD_DISPLAY_HEIGHT)
+                );
+
                 imageButton.setBorder(null);
                 imageButton.setContentAreaFilled(false);
                 imageButton.setFocusPainted(false);
                 imageButton.setMargin(new Insets(0, 0, 0, 0));
                 imageButton.setOpaque(false);
 
-                // Open card details when clicked
                 imageButton.addActionListener(e ->
                         onOpenCard.accept(item)
                 );
 
                 imagePanel.add(imageButton);
-
-                cardContainer.add(
-                        imagePanel, BorderLayout.CENTER
-                );
-
-                // SMALL DETAILS AREA AT THE BOTTOM
-                JPanel details = new JPanel(
-                        new GridLayout(2, 1, 0, 0)
-                );
-
-                details.setBackground(Color.WHITE);
-
-                details.setPreferredSize(
-                        new Dimension(100, 34)
-                );
 
                 // Card name
                 JLabel name = new JLabel(
@@ -184,7 +214,7 @@ public final class BinderPagesForm {
                 );
 
                 name.setFont(
-                        new Font("Arial", Font.BOLD, 11)
+                        new Font("Arial", Font.BOLD, 10)
                 );
 
                 name.setForeground(Color.BLACK);
@@ -206,7 +236,7 @@ public final class BinderPagesForm {
                 );
 
                 priceLabel.setFont(
-                        new Font("Arial", Font.PLAIN, 10)
+                        new Font("Arial", Font.PLAIN, 9)
                 );
 
                 priceLabel.setForeground(
@@ -216,34 +246,47 @@ public final class BinderPagesForm {
                 details.add(name);
                 details.add(priceLabel);
 
-                cardContainer.add(
-                        details, BorderLayout.SOUTH
-                );
-
                 cardContainer.setToolTipText(card.getName());
 
             } else {
 
-                // EMPTY POCKET
+                // EMPTY POCKET — same image area as occupied pockets
                 JLabel emptyLabel = new JLabel(
                         "EMPTY POCKET",
                         SwingConstants.CENTER
                 );
 
                 emptyLabel.setFont(
-                        new Font("Arial", Font.PLAIN, 11)
+                        new Font("Arial", Font.PLAIN, 10)
                 );
 
                 emptyLabel.setForeground(
                         new Color(140, 140, 140)
                 );
 
-                cardContainer.add(
-                        emptyLabel, BorderLayout.CENTER
-                );
+                imagePanel.add(emptyLabel);
+
+                // Blank footer still occupies the same 30px
+                details.add(new JLabel(""));
+                details.add(new JLabel(""));
             }
 
-            cardsPanel.add(cardContainer);
+            cardContainer.add(imagePanel, BorderLayout.CENTER);
+            cardContainer.add(details, BorderLayout.SOUTH);
+
+
+            GridBagConstraints gbc = new GridBagConstraints();
+
+            gbc.gridx = i % 5;
+            gbc.gridy = i / 5;
+
+            gbc.insets = new Insets(3, 4, 3, 4);
+            gbc.anchor = GridBagConstraints.NORTHWEST;
+            gbc.fill = GridBagConstraints.NONE;
+
+            cardsPanel.add(cardContainer, gbc);
+
+
         }
 
         // PAGE INFORMATION
@@ -261,9 +304,30 @@ public final class BinderPagesForm {
                         ? "BACK TO COVER"
                         : "PREVIOUS PAGE"
         );
-
         cardsPanel.revalidate();
         cardsPanel.repaint();
+
+// Match BOTH bottom panels to the full binder grid width
+        int gridWidth = cardsPanel.getPreferredSize().width;
+
+        Dimension navSize = navigationPanel.getPreferredSize();
+        navigationPanel.setPreferredSize(
+                new Dimension(gridWidth, navSize.height)
+        );
+        navigationPanel.setMaximumSize(
+                new Dimension(gridWidth, navSize.height)
+        );
+
+        Dimension toolbarSize = pagesToolbar.getPreferredSize();
+        pagesToolbar.setPreferredSize(
+                new Dimension(gridWidth, toolbarSize.height)
+        );
+        pagesToolbar.setMaximumSize(
+                new Dimension(gridWidth, toolbarSize.height)
+        );
+
+        navigationPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        pagesToolbar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         pagesMainPanel.revalidate();
         pagesMainPanel.repaint();
@@ -274,6 +338,30 @@ public final class BinderPagesForm {
     }
 
     private void requireForm() {
+
+        navigationPanel.setBorder(null);
+        pagesToolbar.setBorder(null);
+
+        int binderWidth = cardsPanel.getPreferredSize().width;
+
+        navigationPanel.setPreferredSize(
+                new Dimension(binderWidth, navigationPanel.getPreferredSize().height)
+        );
+
+        navigationPanel.setMaximumSize(
+                new Dimension(binderWidth, navigationPanel.getPreferredSize().height)
+        );
+
+        pagesToolbar.setPreferredSize(
+                new Dimension(binderWidth, pagesToolbar.getPreferredSize().height)
+        );
+
+        pagesToolbar.setMaximumSize(
+                new Dimension(binderWidth, pagesToolbar.getPreferredSize().height)
+        );
+
+        navigationPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        pagesToolbar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         if (pagesMainPanel == null ||
                 lblBinderName == null ||

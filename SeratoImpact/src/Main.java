@@ -38,12 +38,19 @@ public final class Main {
         screens.add(home.getMainPanel(),"HOME");
         screens.add(cover.getMainPanel(),"COVER");
         screens.add(pages.getMainPanel(),"PAGES");
-        frame=new JFrame("Serato Impact - Digital Binder Marketplace");
+        frame = new JFrame("Serato Impact - Digital Binder Marketplace");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(screens);
-        frame.setSize(1000,810);
-        frame.setMinimumSize(new Dimension(720,620));
+
+// Initial window size
+        frame.setSize(1100, 850);
+
+// Prevent the window from becoming too cramped
+        frame.setMinimumSize(new Dimension(900, 700));
+
+// Center the window on the screen
         frame.setLocationRelativeTo(null);
+
         showHome();
         frame.setVisible(true);
     }
