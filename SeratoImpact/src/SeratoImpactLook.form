@@ -92,9 +92,11 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-1975084"/>
-                  <font name="Arial" size="12" style="1"/>
-                  <foreground color="-12832211"/>
+                  <background color="-724500"/>
+                  <enabled value="true"/>
+                  <font name="Inter Semi Bold" size="12" style="1"/>
+                  <foreground color="-10214332"/>
+                  <horizontalTextPosition value="0"/>
                   <text value="+ NEW BINDER"/>
                 </properties>
               </component>
@@ -105,9 +107,10 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-1975084"/>
-                  <font name="Arial" size="12" style="1"/>
-                  <foreground color="-12832211"/>
+                  <background color="-724500"/>
+                  <enabled value="true"/>
+                  <font name="Inter Semi Bold" size="12" style="1"/>
+                  <foreground color="-10214332"/>
                   <text value="+ SELLER"/>
                 </properties>
               </component>
@@ -118,9 +121,10 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-1975084"/>
-                  <font name="Arial" size="12" style="1"/>
-                  <foreground color="-12832211"/>
+                  <background color="-724500"/>
+                  <enabled value="true"/>
+                  <font name="Inter Semi Bold" size="12" style="1"/>
+                  <foreground color="-10214332"/>
                   <text value="SWITCH SELLER"/>
                 </properties>
               </component>
@@ -131,9 +135,10 @@
                   </grid>
                 </constraints>
                 <properties>
-                  <background color="-1975084"/>
-                  <font name="Arial" size="12" style="1"/>
-                  <foreground color="-12832211"/>
+                  <background color="-724500"/>
+                  <enabled value="true"/>
+                  <font name="Inter Semi Bold" size="12" style="1"/>
+                  <foreground color="-10214332"/>
                   <text value="BUYER VIEW"/>
                 </properties>
               </component>
@@ -145,7 +150,7 @@
             </constraints>
             <properties>
               <background color="-724500"/>
-              <horizontalScrollBarPolicy value="31"/>
+              <horizontalScrollBarPolicy value="30"/>
               <verticalScrollBarPolicy value="20"/>
             </properties>
             <border type="none"/>
