@@ -429,6 +429,14 @@ public final class BinderPagesForm {
 
         List<InventoryItem> cards =
                 binder.getVisibleItems(sellerMode);
+        System.out.println("\n===== UI DISPLAY CHECK =====");
+        System.out.println("Binder: " + binder.getName());
+        System.out.println("Cards to display: " + cards.size());
+
+        for (InventoryItem item : cards) {
+            System.out.println("Card: " + item.getCard().getName());
+            System.out.println("Image: " + item.getCard().getImagePath());
+        }
 
         int totalPages = Math.max(
                 1,

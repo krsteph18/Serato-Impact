@@ -32,7 +32,7 @@ public final class Binder implements Serializable {
     public List<InventoryItem> getItems() { return Collections.unmodifiableList(items); }
     public int getTotalPages(boolean sellerMode) {
         int n = getVisibleItems(sellerMode).size();
-        return Math.max(1, (n + 8) / 9);
+        return Math.max(1, (n + 14) / 15);
     }
     public List<InventoryItem> getVisibleItems(boolean sellerMode) {
         if (sellerMode) return getItems();

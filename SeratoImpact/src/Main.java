@@ -62,10 +62,28 @@ public final class Main {
         }
     }
     private void showHome(){home.show(currentSeller,sellerMode);navigation.show(screens,"HOME");}
-    private void openBinder(Binder binder){
+    private void openBinder(Binder binder) {
+
         if (!sellerMode && !binder.isPublic()) return;
-        if (sellerMode && !binder.getOwnerId().equals(currentSeller.getUserId())) return;
-        currentBinder=binder;
+
+        if (sellerMode &&
+                !binder.getOwnerId().equals(currentSeller.getUserId())) {
+            return;
+        }
+
+        currentBinder = binder;
+
+        // Debugging: identify the selected binder
+        System.out.println("\n===== OPENING BINDER =====");
+        System.out.println("Name: " + currentBinder.getName());
+        System.out.println("Binder ID: " + currentBinder.getBinderId());
+        System.out.println("Total cards: " + currentBinder.getItems().size());
+
+        for (InventoryItem item : currentBinder.getItems()) {
+            System.out.println("Card: " + item.getCard().getName());
+            System.out.println("Card ID: " + item.getCard().getCardId());
+        }
+
         showCover();
     }
     private void showCover(){
@@ -73,10 +91,25 @@ public final class Main {
         cover.setBinder(currentBinder,marketplace.getOwner(currentBinder),sellerMode);
         navigation.show(screens,"COVER");
     }
-    private void showPages(){
-        if(currentBinder==null){showHome();return;}
-        pages.setBinder(currentBinder,sellerMode);
-        navigation.show(screens,"PAGES");
+    private void showPages() {
+
+        if (currentBinder == null) {
+            showHome();
+            return;
+        }
+
+        System.out.println("\n===== DISPLAYING BINDER =====");
+        System.out.println("Binder: " + currentBinder.getName());
+        System.out.println("ID: " + currentBinder.getBinderId());
+        System.out.println("Cards: " + currentBinder.getItems().size());
+
+        for (InventoryItem item : currentBinder.getItems()) {
+            System.out.println("Card: " + item.getCard().getName());
+        }
+
+        pages.setBinder(currentBinder, sellerMode);
+
+        navigation.show(screens, "PAGES");
     }
     private void toggleMode(){
         sellerMode=!sellerMode;
@@ -109,14 +142,50 @@ public final class Main {
         if(confirmation!=JOptionPane.YES_OPTION)return;
         marketplace.removeBinder(currentBinder);currentBinder=null;save();showHome();
     }
-    private void addCard(){
-        if(!canManage())return;
-        CardEditorForm editor=CardEditorForm.show(frame,null);
-        if(editor==null)return;
-        try{
-            currentBinder.addCard(editor.createItem());
-            save();showPages();
-        }catch(IOException | IllegalArgumentException ex){error(ex);}
+    private void addCard() {
+
+        if (!canManage()) return;
+
+        CardEditorForm editor = CardEditorForm.show(frame, null);
+
+        if (editor == null) return;
+
+        try {
+
+            InventoryItem item = editor.createItem();
+
+            currentBinder.addCard(item);
+
+            // DEBUGGING
+            System.out.println("\n===== CARD ADDED =====");
+            System.out.println("Card: " + item.getCard().getName());
+            System.out.println("Added to: " + currentBinder.getName());
+            System.out.println("Binder ID: " + currentBinder.getBinderId());
+
+            System.out.println("\n===== ALL BINDERS =====");
+
+            for (Binder b : marketplace.getBinders()) {
+
+                System.out.println(
+                        b.getName() + " | " +
+                                b.getBinderId() + " | Cards: " +
+                                b.getItems().size()
+                );
+
+                for (InventoryItem savedItem : b.getItems()) {
+                    System.out.println(
+                            "  Card: " + savedItem.getCard().getName()
+                                    + " | ID: " + savedItem.getCard().getCardId()
+                    );
+                }
+            }
+
+            save();
+            showPages();
+
+        } catch (IOException | IllegalArgumentException ex) {
+            error(ex);
+        }
     }
     private void showCardDetails(InventoryItem item){
         if(currentBinder==null)return;
