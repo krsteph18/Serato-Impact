@@ -1,6 +1,7 @@
-
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.File;
+import javax.imageio.ImageIO;
 
 public class RealImage {
 
@@ -15,7 +16,7 @@ public class RealImage {
 
         if (image == null) {
             System.out.println("Loading full-resolution image...");
-            image = CardImage.loadFull(path);
+            image = ImageIO.read(new File(path));
         }
 
         return image;
